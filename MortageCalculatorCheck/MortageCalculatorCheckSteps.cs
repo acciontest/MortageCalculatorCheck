@@ -161,8 +161,8 @@ namespace MortageCalculatorCheck
             string htmlresponse = getjoboutput;
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(htmlresponse);
-          //  string output = doc.DocumentNode.SelectSingleNode("//span[@class='DefaultNumericText']").InnerHtml;
-            string output = doc.DocumentNode.SelectSingleNode("//*[@id='preview']/table/tbody/tr[1]/td/div").InnerHtml;
+            string output = doc.DocumentNode.SelectSingleNode("//span[@class='DefaultNumericText']").InnerHtml;
+           // string output = doc.DocumentNode.SelectSingleNode("//*[@id='preview']/table/tbody/tr[1]/td/div").InnerHtml;
             decimal output1= Convert.ToDecimal(output);
             decimal finaloutput= Math.Round(output1, 2);
 
