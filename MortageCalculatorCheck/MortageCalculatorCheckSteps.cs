@@ -206,7 +206,7 @@ namespace MortageCalculatorCheck
             //}
             ////StringAssert.Contains(answer.ToString(), output3);
             #endregion
-            Assert.AreEqual(answer, finaloutput,"Values are not matching" );
+            Assert.AreEqual(answer, finaloutput);
 
 
         }
