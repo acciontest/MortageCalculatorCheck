@@ -23,8 +23,8 @@ namespace MortageCalculatorCheck
         private string jobid;
         private string outputid;
 
-//        private Client Obj = new Client("https://devgallery.alteryx.com/api/");
-        private Client Obj =new Client("https://gallery.alteryx.com/api/");
+      private Client Obj = new Client("https://devgallery.alteryx.com/api/");
+      //  private Client Obj =new Client("https://gallery.alteryx.com/api/");
 
         private RootObject jsString = new RootObject();
 
