@@ -72,12 +72,14 @@ namespace MortageCalculatorCheck
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
-testRunner.Given("alteryx running at\" http://devgallery.alteryx.com/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+testRunner.Given("alteryx running at\" http://gallery.alteryx.com/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
-testRunner.And("I am logged in using \"curator@alteryx.com\" and \"alteryx rocks!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I am logged in using \"deepak.manoharan@accionlabs.com\" and \"P@ssw0rd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
-testRunner.And("I run mortgage calculator with principle 100000 interest 0.04 payments 36", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I publish the application \"mortage calculator\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
+testRunner.And("I run mortgage calculator with principle 100000 interest 0.04 payments 36", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
 testRunner.Then("I see output 2779.49", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -1,16 +1,12 @@
 ﻿
 using System;
-using System.Collections;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
 using AlteryxGalleryAPIWrapper;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using System.Collections.Generic;
-using System.Linq;
+
 
 namespace MortageCalculatorCheck
 {
@@ -27,8 +23,8 @@ namespace MortageCalculatorCheck
         private string jobid;
         private string outputid;
 
-        private Client Obj = new Client("https://devgallery.alteryx.com/api/");
-       // private Client Obj =new Client("https://gallery.alteryx.com/api/");
+//        private Client Obj = new Client("https://devgallery.alteryx.com/api/");
+        private Client Obj =new Client("https://gallery.alteryx.com/api/");
 
         private RootObject jsString = new RootObject();
 
@@ -39,11 +35,27 @@ namespace MortageCalculatorCheck
             alteryxurl = url;
         }
 
+     
+
+
         [Given(@"I am logged in using ""(.*)"" and ""(.*)""")]
         public void GivenIAmLoggedInUsingAnd(string user, string password)
         {
             // Authenticate User and Retreive Session ID
             _sessionid = Obj.Authenticate(user, password).sessionId;
+
+        }
+
+        [Given(@"I publish the application ""(.*)""")]
+        public void GivenIPublishTheApplication(string p0)
+        {
+            //Publish the app & get the ID of the app
+            string apppath = @"D:\GalleryApps\Mortgage_Calculator.yxzp";
+            Action<long> progress = new Action<long>(Console.Write);
+            var pubResult = Obj.SendAppAndGetId(apppath, progress);
+            _appid = pubResult.id;
+            //string validid = pubResult.validation.validationId;
+            //var validres = Obj.GetValidation(_appid, validid);
 
         }
 
@@ -61,7 +73,7 @@ namespace MortageCalculatorCheck
             int count = appresponse["recordCount"];
             //for (int i = 0; i <= count - 1; i++)
             //{
-            _appid = appresponse["records"][0]["id"];
+          //  _appid = appresponse["records"][0]["id"];
             _userid = appresponse["records"][0]["owner"]["id"];
             _appName = appresponse["records"][0]["primaryApplication"]["fileName"];
             //}       
