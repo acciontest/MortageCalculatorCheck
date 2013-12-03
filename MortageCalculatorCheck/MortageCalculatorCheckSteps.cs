@@ -50,7 +50,7 @@ namespace MortageCalculatorCheck
         public void GivenIPublishTheApplication(string p0)
         {
             //Publish the app & get the ID of the app
-            string apppath = @"D:\GalleryApps\Mortgage_Calculator.yxzp";
+            string apppath = @"..\..\docs\Mortgage_Calculator.yxzp";
             Action<long> progress = new Action<long>(Console.Write);
             var pubResult = Obj.SendAppAndGetId(apppath, progress);
             _appid = pubResult.id;
