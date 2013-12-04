@@ -32,7 +32,8 @@ namespace MortageCalculatorCheck
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "MortageCalculatorCheck", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "MortageCalculatorCheck", "      Run the mortgage calculator , calculate the results & check the given outpu" +
+                    "t", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,26 +65,35 @@ namespace MortageCalculatorCheck
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 4
+ #line 5
+  testRunner.Given("alteryx running at\" http://devgallery.alteryx.com/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+  testRunner.And("I am logged in using \"curator@alteryx.com\" and \"alteryx rocks!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+  testRunner.And("I publish the application \"mortage calculator\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 8
+  testRunner.And("I check if the application is \"Valid\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("publish and run Mortage Calculator")]
-        public virtual void PublishAndRunMortageCalculator()
+        [NUnit.Framework.TestCaseAttribute("100000", "0.04", "36", "2779.49", null)]
+        public virtual void PublishAndRunMortageCalculator(string principle, string interest, string numberOfPayments, string result, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("publish and run Mortage Calculator", ((string[])(null)));
-#line 3
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("publish and run Mortage Calculator", exampleTags);
+#line 10
 this.ScenarioSetup(scenarioInfo);
 #line 4
-testRunner.Given("alteryx running at\" http://devgallery.alteryx.com/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 5
-testRunner.And("I am logged in using \"curator@alteryx.com\" and \"alteryx rocks!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 6
-testRunner.And("I publish the application \"mortage calculator\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 7
-testRunner.And("I check if the application is \"Valid\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 8
-testRunner.And("I run mortgage calculator with principle 100000 interest 0.04 payments 36", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
-testRunner.Then("I see output 2779.49", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
+ this.FeatureBackground();
+#line 11
+testRunner.When(string.Format("I run mortgage calculator with principle {0} interest {1} payments {2}", principle, interest, numberOfPayments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+testRunner.Then(string.Format("I see output {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
 testRunner.And("Then I delete the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

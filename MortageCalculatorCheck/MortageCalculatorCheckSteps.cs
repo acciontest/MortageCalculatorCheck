@@ -23,10 +23,7 @@ namespace MortageCalculatorCheck
         private string jobid;
         private string outputid;
         private string validationId;
-        private bool isValid;
         
-         //private string disposition;
-
        private Client Obj = new Client("https://devgallery.alteryx.com/api/");
       //  private Client Obj =new Client("https://gallery.alteryx.com/api/");
 
@@ -60,7 +57,7 @@ namespace MortageCalculatorCheck
             _appid = pubResult.id;
             validationId = pubResult.validation.validationId;
      //       isValid = pubResult.validation.isValid;
-            Enum disposition = pubResult.validation.disposition;
+          //  Enum disposition = pubResult.validation.disposition;
             //var validres = Obj.GetValidation(_appid, validid);
 
         }
@@ -84,9 +81,13 @@ namespace MortageCalculatorCheck
         }
 
 
-        [Given(@"I run mortgage calculator with principle (.*) interest (.*) payments (.*)")]
-        public void GivenIRunMortgageCalculatorWithPrincipleInterestPayments(int principle, Decimal interest,
-            int numpayments)
+        [When(@"I run mortgage calculator with principle (.*) interest (.*) payments (.*)")]
+        public void WhenIRunMortgageCalculatorWithPrincipleInterestPayments(int principle, Decimal interest, int numpayments)
+        
+
+       // [Given(@"I run mortgage calculator with principle (.*) interest (.*) payments (.*)")]
+       // public void GivenIRunMortgageCalculatorWithPrincipleInterestPayments(int principle, Decimal interest,
+         //   int numpayments)
         {
             //url + "/apps/studio/?search=" + appName + "&limit=20&offset=0"
             //Search for App & Get AppId & userId 
