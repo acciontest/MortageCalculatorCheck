@@ -7,5 +7,6 @@ And I publish the application "mortage calculator"
 And I check if the application is "Valid"
 And I run mortgage calculator with principle 100000 interest 0.04 payments 36
 Then I see output 2779.49
+And Then I delete the application
   
  

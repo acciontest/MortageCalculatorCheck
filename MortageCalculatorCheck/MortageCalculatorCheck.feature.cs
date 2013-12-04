@@ -83,6 +83,8 @@ testRunner.And("I check if the application is \"Valid\"", ((string)(null)), ((Te
 testRunner.And("I run mortgage calculator with principle 100000 interest 0.04 payments 36", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
 testRunner.Then("I see output 2779.49", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+testRunner.And("Then I delete the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -245,10 +245,16 @@ namespace MortageCalculatorCheck
 
             Assert.AreEqual(answer, finaloutput);
 
-          //  var deleteres = Obj.DeleteApp(_appid);
-
-
-
+            
         }
+        [Then(@"Then I delete the application")]
+        public void ThenThenIDeleteTheApplication()
+        {
+            //Delete the published app 
+            //api- url.alteryx.com/api/apps/{ID}/
+            //method =Delete
+            var deleteres = Obj.DeleteApp(_appid);
+        }
+
     }
 }
