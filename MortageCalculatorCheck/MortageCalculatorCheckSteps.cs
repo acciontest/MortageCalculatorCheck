@@ -22,8 +22,12 @@ namespace MortageCalculatorCheck
         private string _appName;
         private string jobid;
         private string outputid;
+        private string validationId;
+        private bool isValid;
+        
+         //private string disposition;
 
-      private Client Obj = new Client("https://devgallery.alteryx.com/api/");
+       private Client Obj = new Client("https://devgallery.alteryx.com/api/");
       //  private Client Obj =new Client("https://gallery.alteryx.com/api/");
 
         private RootObject jsString = new RootObject();
@@ -54,10 +58,31 @@ namespace MortageCalculatorCheck
             Action<long> progress = new Action<long>(Console.Write);
             var pubResult = Obj.SendAppAndGetId(apppath, progress);
             _appid = pubResult.id;
-            //string validid = pubResult.validation.validationId;
+            validationId = pubResult.validation.validationId;
+     //       isValid = pubResult.validation.isValid;
+            Enum disposition = pubResult.validation.disposition;
             //var validres = Obj.GetValidation(_appid, validid);
 
         }
+        [Given(@"I check if the application is ""(.*)""")]
+        public void GivenICheckIfTheApplicationIs(string status)
+        {
+            // validate a published app can be run 
+            // two step process. First, GetValidationStatus which indicates when validation disposition is available. 
+            // Second, GetValidation, which gives actual status Valid, UnValid, etc.
+            
+            String validStatus = "";
+            while (validStatus != "Completed")
+            {
+                var validationStatus = Obj.GetValidationStatus(validationId); // url/api/apps/jobs/{VALIDATIONID}/
+                validStatus = validationStatus.status;
+                string disposition = validationStatus.disposition;
+            }
+            var finalValidation = Obj.GetValidation(_appid, validationId); // url/api/apps/{APPID}/validation/{VALIDATIONID}/
+            var finaldispostion = finalValidation.validation.disposition;
+            StringAssert.IsMatch(status, finaldispostion.ToString());
+        }
+
 
         [Given(@"I run mortgage calculator with principle (.*) interest (.*) payments (.*)")]
         public void GivenIRunMortgageCalculatorWithPrincipleInterestPayments(int principle, Decimal interest,
@@ -173,8 +198,7 @@ namespace MortageCalculatorCheck
             string htmlresponse = getjoboutput;
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(htmlresponse);
-            string output = doc.DocumentNode.SelectSingleNode("//span[@class='DefaultNumericText']").InnerHtml;
-           // string output = doc.DocumentNode.SelectSingleNode("//*[@id='preview']/table/tbody/tr[1]/td/div").InnerHtml;
+            string output = doc.DocumentNode.SelectSingleNode("//span[@class='DefaultNumericText']").InnerHtml;   
             decimal output1= Convert.ToDecimal(output);
             decimal finaloutput= Math.Round(output1, 2);
 
@@ -218,7 +242,11 @@ namespace MortageCalculatorCheck
             //}
             ////StringAssert.Contains(answer.ToString(), output3);
             #endregion
+
             Assert.AreEqual(answer, finaloutput);
+
+          //  var deleteres = Obj.DeleteApp(_appid);
+
 
 
         }

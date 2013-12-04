@@ -78,8 +78,10 @@ testRunner.And("I am logged in using \"curator@alteryx.com\" and \"alteryx rocks
 #line 6
 testRunner.And("I publish the application \"mortage calculator\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
-testRunner.And("I run mortgage calculator with principle 100000 interest 0.04 payments 36", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I check if the application is \"Valid\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
+testRunner.And("I run mortgage calculator with principle 100000 interest 0.04 payments 36", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
 testRunner.Then("I see output 2779.49", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
