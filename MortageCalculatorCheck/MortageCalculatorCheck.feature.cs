@@ -67,34 +67,40 @@ namespace MortageCalculatorCheck
         
         public virtual void FeatureBackground()
         {
-#line 4
- #line 5
-  testRunner.Given("alteryx running at\" http://devgallery.alteryx.com/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
-  testRunner.And("I am logged in using \"curator@alteryx.com\" and \"alteryx rocks!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 5
+ #line 6
+  testRunner.Given("alteryx running at\" http://gallery.alteryx.com/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
-  testRunner.And("I publish the application \"mortage calculator\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I am logged in using \"deepak.manoharan@accionlabs.com\" and \"P@ssw0rd\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
+  testRunner.And("I publish the application \"mortage calculator\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
   testRunner.And("I check if the application is \"Valid\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("publish and run Mortage Calculator")]
+        [NUnit.Framework.CategoryAttribute("DisposeApp")]
         [NUnit.Framework.TestCaseAttribute("100000", "0.04", "36", "2779.49", null)]
+        [NUnit.Framework.TestCaseAttribute("200000", "0.04", "360", "2779.49", null)]
         public virtual void PublishAndRunMortageCalculator(string principle, string interest, string numberOfPayments, string result, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("publish and run Mortage Calculator", exampleTags);
-#line 10
+            string[] @__tags = new string[] {
+                    "DisposeApp"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("publish and run Mortage Calculator", @__tags);
+#line 13
 this.ScenarioSetup(scenarioInfo);
-#line 4
+#line 5
  this.FeatureBackground();
-#line 11
+#line 14
 testRunner.When(string.Format("I run mortgage calculator with principle {0} interest {1} payments {2}", principle, interest, numberOfPayments), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 12
+#line 15
 testRunner.Then(string.Format("I see output {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
-testRunner.And("Then I delete the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
