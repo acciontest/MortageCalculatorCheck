@@ -23,10 +23,10 @@ namespace MortageCalculatorCheck
         private string validationId;
 
         public delegate void DisposeObject();
-        private Client Obj = new Client("https://gallery.alteryx.com/api/");
+        //private Client Obj = new Client("https://devgallery.alteryx.com/api/");
 
 
-        //  private Client Obj =new Client("https://gallery.alteryx.com/api/");
+          private Client Obj =new Client("https://gallery.alteryx.com/api/");
 
         private RootObject jsString = new RootObject();
 
@@ -37,41 +37,44 @@ namespace MortageCalculatorCheck
             alteryxurl = url;
         }
 
+        /// <summary>
+        /// Authenticate User and Retreive Session ID
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
         [Given(@"I am logged in using ""(.*)"" and ""(.*)""")]
         public void GivenIAmLoggedInUsingAnd(string user, string password)
         {
-            // Authenticate User and Retreive Session ID
+
             _sessionid = Obj.Authenticate(user, password).sessionId;
 
         }
 
+        /// <summary>
+        /// //Publish the app & get the ID of the app
+        /// </summary>
+        /// <param name="appName"></param>
         [Given(@"I publish the application ""(.*)""")]
         public void GivenIPublishTheApplication(string appName)
         {
-            //Publish the app & get the ID of the app
             string apppath = @"..\..\docs\Mortgage_Calculator.yxzp";
             Action<long> progress = new Action<long>(Console.Write);
             var pubResult = Obj.SendAppAndGetId(apppath, progress);
             _appid = pubResult.id;
             validationId = pubResult.validation.validationId;
-
-
-         //Added some code
-           ScenarioContext.Current.Set(Obj, System.Guid.NewGuid().ToString());
-           //ScenarioContext.Current.Set(Obj, System.Guid.NewGuid().ToString());
-           //ScenarioContext.Current.Set(Obj, System.Guid.NewGuid().ToString());
-
+            ScenarioContext.Current.Set(Obj, System.Guid.NewGuid().ToString());
 
         }
 
+        /// <summary>
+        /// 
+        // validate a published app can be run 
+        // two step process. First, GetValidationStatus which indicates when validation disposition is available. 
+        /// </summary>
+        /// <param name="status"></param>
         [Given(@"I check if the application is ""(.*)""")]
         public void GivenICheckIfTheApplicationIs(string status)
         {
-            // validate a published app can be run 
-            // two step process. First, GetValidationStatus which indicates when validation disposition is available. 
-            // Second, GetValidation, which gives actual status Valid, UnValid, etc.
-          //  ScenarioContext.Current.Set(Obj, System.Guid.NewGuid().ToString());
-
             int count = 0;
             String validStatus = "";
 
@@ -94,58 +97,12 @@ namespace MortageCalculatorCheck
 
             else
             {
-                // SystemException ex = new SystemException();
+
                 throw new Exception("Complete Status Not found");
-                //ex.ToString();  
-                //Exception e;
-                //throw e.Message; API side error
+
             }
 
-            #region oldCode
 
-            /*     String validStatus = "";
-                 try
-                 {
-                     System.Threading.Thread.Sleep(3000);
-                     var validationStatus = Obj.GetValidationStatus(validationId);
-                     validStatus = validationStatus.status;
-                     string disposition = validationStatus.disposition;
-
-                 }
-                 catch (Exception e)
-                 {
-
-                     throw e;
-                 }
-                 */
-
-
-            //CheckValidate:
-            //    if (validStatus != "Completed")
-            //    {
-            //        var validationStatus = Obj.GetValidationStatus(validationId);
-            //        validStatus = validationStatus.status;
-            //        string disposition = validationStatus.disposition;
-            //        try
-            //        {
-            //            if (count <= 5)
-            //            {
-            //                System.Threading.Thread.Sleep(1000);
-
-            //            }
-            //        }
-            //        catch (Exception e)
-            //        {
-
-            //            throw e;
-            //        }
-            //        count++;
-            //    }
-            //    else
-            //    {
-            //        goto CheckValidate;
-            //    }
-            #endregion
             var finalValidation = Obj.GetValidation(_appid, validationId); // url/api/apps/{APPID}/validation/{VALIDATIONID}/
             var finaldispostion = finalValidation.validation.disposition;
             StringAssert.IsMatch(status, finaldispostion.ToString());
@@ -155,13 +112,6 @@ namespace MortageCalculatorCheck
         [When(@"I run mortgage calculator with principle (.*) interest (.*) payments (.*)")]
         public void WhenIRunMortgageCalculatorWithPrincipleInterestPayments(int principle, Decimal interest, int numpayments)
         {
-
-            //string response = Obj.SearchApps("mortgage");
-            //var appresponse = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Dictionary<string, dynamic>>(response);
-            //int count = appresponse["recordCount"];
-            //_userid = appresponse["records"][0]["owner"]["id"];
-            //_appName = appresponse["records"][0]["primaryApplication"]["fileName"];
-
             jsString.appPackage.id = _appid;
             jsString.userId = _userid;
             jsString.appName = _appName;
@@ -215,8 +165,6 @@ namespace MortageCalculatorCheck
             var jobqueue = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Dictionary<string, dynamic>>(resjobqueue);
             jobid = jobqueue["id"];
 
-
-            //----------------------------------------------------
             int count = 0;
             string status = "";
 
@@ -237,7 +185,7 @@ namespace MortageCalculatorCheck
             else
             {
                 throw new Exception("Complete Status Not found");
-                //throw e.Message; API side error
+
             }
 
         }
@@ -262,107 +210,23 @@ namespace MortageCalculatorCheck
             //Obj.DeleteApp(_appid);
 
         }
-        [Then(@"Then I delete the application")]
-        public void ThenThenIDeleteTheApplication()
-        {
-            #region Delete Old Code
-            //Delete the published app 
-            //api- url.alteryx.com/api/apps/{ID}/
-            //method =Delete
-            // IDisposable disposable = Obj.DeleteApp(_appid);
-            // System.IDisposable =(Obj.DeleteApp(_appid));
-            #endregion
-
-            #region
-            //Obj.DeleteApp(_appid);
-
-            //DisposeObject disObj = new DisposeObject(Obj.Dispose);
-
-            //// For Example
-            //disObj += new DisposeObject(Obj.Disposerss);
-
-            //disObj();
-            ////Reg
-            //ScenarioContext.Current.Set(disObj, System.Guid.NewGuid().ToString());
-            ////  ScenarioContext.Current.Count;   
-            //var invocationList = disObj.GetInvocationList();
-            //foreach (var item in invocationList)
-            //{
-            //    Obj = null;
-
-            //}
-            #endregion
-
-            #region
-            //for item in ScenarioContext.Current do 
-            //    try
-            //        let thing = item.Value :?> System.IDisposable    // cast to IDisposable if possible 
-            //        printfn "disposing %A" item.Value                // just a tracing statement to indicate it is working
-            //        thing.Dispose()                                  // dispose it
-            //    with
-            //        | :? System.InvalidCastException -> ()           // quietly ignore anything not implementing IDisposable
-
-
-            //[AfterScenario]
-
-            //try
-            //{
-            //    foreach (var item in ScenarioContext.Current)
-            //    {
-            //        if (ScenarioContext.Current.Count > 0)
-            //        {
-            //            Obj.Dispose(_appid);
-            //        }
-            //        else
-            //        {
-            //            throw new Exception("No Object found") ;
-            //        }
-            //    }
-
-            //}
-            //catch (Exception e)
-            //{
-            //    throw e;
-            //}
-
-
-
-
-            //public void Dispose()
-            //{
-            //    Obj = null;
-
-            //}
-
-            //public void Dispose(string appID)
-            //{
-            //    //Obj.DeleteApp(appID);
-            //    Obj = null;
-            //}
-
-
-            #endregion
-
-
-            
-        }
 
         [AfterScenario()]
         public void AfterScenario()
         {
             try
             {
-                    if (ScenarioContext.Current.Count > 0)
+                if (ScenarioContext.Current.Count > 0)
+                {
+                    foreach (var item in ScenarioContext.Current)
                     {
-                        foreach (var item in ScenarioContext.Current)
-                        {
-                            Obj.Dispose(_appid);
-                        }
+                        Obj.Dispose(_appid);
                     }
-                    else
-                    {
-                        throw new Exception("No Object found");
-                    }
+                }
+                else
+                {
+                    throw new Exception("No Object found");
+                }
 
             }
             catch (Exception e)
@@ -374,7 +238,7 @@ namespace MortageCalculatorCheck
 
 
     }
-      
+
 
 }
 
