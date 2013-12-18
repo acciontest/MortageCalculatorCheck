@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using AlteryxGalleryAPIWrapper;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
@@ -24,8 +25,8 @@ namespace MortageCalculatorCheck
         private string outputid;
         private string validationId;
         
-       private Client Obj = new Client("https://devgallery.alteryx.com/api/");
-      //  private Client Obj =new Client("https://gallery.alteryx.com/api/");
+      // private Client Obj = new Client("https://devgallery.alteryx.com/api/");
+      private Client Obj =new Client("https://gallery.alteryx.com/api/");
 
         private RootObject jsString = new RootObject();
 
@@ -248,14 +249,23 @@ namespace MortageCalculatorCheck
 
             
         }
-        [Then(@"Then I delete the application")]
-        public void ThenThenIDeleteTheApplication()
+
+        //[Then(@"Then I delete the application")]
+        [AfterScenario("DisposeApp")]
+        public void AfterScenario()
         {
-            //Delete the published app 
-            //api- url.alteryx.com/api/apps/{ID}/
-            //method =Delete
             var deleteres = Obj.DeleteApp(_appid);
         }
 
+        
+        //public void ThenThenIDeleteTheApplication()
+        //{
+        
+        ////        //Delete the published app 
+        ////        //api- url.alteryx.com/api/apps/{ID}/
+        ////        //method =Delete
+        //  var deleteres = Obj.DeleteApp(_appid);
+        ////     ScenarioContext.Current.Get<IDisposable>(_appid);
+        //}
     }
 }
