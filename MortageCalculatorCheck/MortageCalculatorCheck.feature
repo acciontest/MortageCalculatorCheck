@@ -9,7 +9,7 @@
   And I check if the application is "Valid"
 
 
-@DisposeApp
+
 Scenario Outline: publish and run Mortage Calculator
 When I run mortgage calculator with principle <principle> interest <interest> payments <number of payments>
 Then I see output <result>
