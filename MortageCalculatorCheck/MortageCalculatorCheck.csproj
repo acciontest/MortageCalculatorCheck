@@ -34,13 +34,30 @@
   <ItemGroup>
     <Reference Include="AlteryxGalleryAPIWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\AlteryxGalleryAPIWrapperNew\AlteryxGalleryAPIWrapper\bin\Debug\AlteryxGalleryAPIWrapper.dll</HintPath>
+      <HintPath>..\..\AlteryxGalleryAPIWrapper\AlteryxGalleryAPIWrapper\bin\Debug\AlteryxGalleryAPIWrapper.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
+    <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\FSharp\3.0\Runtime\v4.0\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\AlteryxWrapper.1.0.0\lib\AlteryxGalleryAPIWrapper.dll</HintPath>
+    </Reference>
+      <HintPath>..\packages\AlteryxWrapper.1.0.0\lib\AlteryxGalleryAPIWrapper.dll</HintPath>
+    </Reference>
+      <HintPath>..\packages\AlteryxWrapper.1.0.0\lib\AlteryxGalleryAPIWrapper.dll</HintPath>
+    </Reference>
+      <HintPath>..\packages\AlteryxWrapper.1.0.0\lib\AlteryxGalleryAPIWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BCrypt.Net, Version=0.1.4056.18965, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MyPackage.1.0.0\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\AlteryxGalleryAPIWrapper\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MyPackage.1.0.0\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -48,6 +65,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MyPackage.1.0.0\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfterTearDown.cs" />
     <Compile Include="Jsonpayload.cs" />
     <Compile Include="MortageCalculatorCheck.feature.cs">
       <AutoGen>True</AutoGen>
@@ -77,6 +98,9 @@
       <LastGenOutput>MortageCalculatorCheck.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
