@@ -16,7 +16,7 @@ Then I see output <result>
 Examples: 
 | principle | interest | number of payments | result  |
 | 100000    | 0.04     | 36                 | 2779.49 |
-| 200000    | 0.04     | 360                | 2779.49 |
+
 
   
  

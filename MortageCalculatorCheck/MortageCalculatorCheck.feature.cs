@@ -82,7 +82,6 @@ namespace MortageCalculatorCheck
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("publish and run Mortage Calculator")]
         [NUnit.Framework.TestCaseAttribute("100000", "0.04", "36", "2779.49", null)]
-        [NUnit.Framework.TestCaseAttribute("200000", "0.04", "360", "2779.49", null)]
         public virtual void PublishAndRunMortageCalculator(string principle, string interest, string numberOfPayments, string result, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("publish and run Mortage Calculator", exampleTags);

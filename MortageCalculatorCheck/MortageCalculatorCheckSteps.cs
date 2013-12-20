@@ -12,7 +12,6 @@ namespace MortageCalculatorCheck
     [Binding]
     public class MortageCalculatorCheckSteps
     {
-
         public string alteryxurl;
         public string _sessionid;
         private string _appid;
@@ -24,11 +23,8 @@ namespace MortageCalculatorCheck
 
         public delegate void DisposeObject();
         //private Client Obj = new Client("https://devgallery.alteryx.com/api/");
-
-
-          private Client Obj =new Client("https://gallery.alteryx.com/api/");
-
-        private RootObject jsString = new RootObject();
+         Client Obj = new Client("https://gallery.alteryx.com/api/");
+         RootObject jsString = new RootObject();
 
 
         [Given(@"alteryx running at""(.*)""")]
@@ -220,7 +216,7 @@ namespace MortageCalculatorCheck
                 {
                     foreach (var item in ScenarioContext.Current)
                     {
-                        Obj.Dispose(_appid);
+                       Obj.Dispose();
                     }
                 }
                 else
